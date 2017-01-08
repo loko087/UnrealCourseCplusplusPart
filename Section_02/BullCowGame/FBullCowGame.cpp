@@ -2,27 +2,40 @@
 
 
 
+//Constructor and Destructor
 FBullCowGame::FBullCowGame()
 {
+	Reset();
 }
-
 
 FBullCowGame::~FBullCowGame()
 {
 }
 
-void FBullCowGame::Reset()
+//Getters 
+int FBullCowGame::GetCurrentTry() const
 {
+	return myCurrentTry;
 }
 
-int FBullCowGame::GetMaxTries()
+int FBullCowGame::GetMaxTries() const
 {
-	return 0;
+	return myMaxTries;
 }
 
-bool FBullCowGame::IsGameWon()
+bool FBullCowGame::IsGameWon() const
 {
 	return false;
+}
+
+
+//Methods
+void FBullCowGame::Reset()
+{
+	constexpr int MAX_TRIES = 5;
+	myMaxTries = MAX_TRIES;
+	myCurrentTry = 1;
+	return;
 }
 
 bool FBullCowGame::CheckGuessValidity(std::string)

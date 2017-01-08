@@ -4,9 +4,6 @@
 class FBullCowGame
 {
 //Variables
-public:
-	int getCurrentTry;
-
 private:
 	int myCurrentTry;
 	int myMaxTries;
@@ -16,13 +13,13 @@ public:
 	FBullCowGame();
 	~FBullCowGame();
 	
-	void Reset();
-	int GetMaxTries();
-	bool IsGameWon();
-	bool CheckGuessValidity(std::string); 
-	
+	//  Const protects us from modifying the members of the class inside a method
+	int GetCurrentTry() const;
+	int GetMaxTries() const;
+	bool IsGameWon() const;
 
-private:
+	void Reset();
+	bool CheckGuessValidity(std::string); 
 
 };
 
