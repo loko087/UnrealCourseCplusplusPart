@@ -29,7 +29,7 @@ void PrintIntro() {
 
 	constexpr int32  WORD_LENGTH = 5; //This is how you declare a constant expression, meaning something we won't change during compile time
 	std::cout << "Welcome to the Bulls and Cows game\n";
-	std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram am thinking of?\n";
+	std::cout << "Can you guess the " << playerGame.GetHiddenWordLength() << " letter isogram am thinking of?\n";
 	std::cout << std::endl;
 
 }
@@ -56,9 +56,34 @@ void PlayGame()
 	for (int32 i = 0; i <= playerGame.GetMaxTries(); i++)
 	{
 		guess = GetGuess();
-		std::cout << "Your Guess was: " << guess << std::endl;
-		std::cout << std::endl;
+		EWordStatus status = playerGame.CheckGuessValidity(guess);
+		if( status == EWordStatus::Ok){
+		FBullCowCount bullCowCount = playerGame.SubmitGuess(guess);
+		printBullsAndCows(bullCowCount, guess);
+		}
+		else {
+			switch (status) {
+			case(EWordStatus::Different_Length):
+				std::cout << "Not the same lenght, please try again" << std::endl;
+				break;
+			case(EWordStatus::Not_Isogramm) :
+				break;
+			case(EWordStatus::Not_lowercase) :
+				std::cout << "Not all lowercase, please try again" << std::endl;
+				break;
+			}
+			i--;
+		}
 	}
+	return;
+
+}
+
+void printBullsAndCows(FBullCowCount bullCowCount, FText guess) {
+	std::cout << "Your Guess was: " << guess << std::endl;
+	std::cout << "Bulls = " << bullCowCount.bulls;
+	std::cout << ".Cows = " << bullCowCount.cows << std::endl;
+	return;
 }
 
 bool AskToPlayAgain()
