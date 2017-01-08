@@ -14,6 +14,7 @@ FText GetGuess();
 void PlayGame();
 bool AskToPlayAgain();
 FBullCowGame playerGame;
+void printBullsAndCows(FBullCowCount, FText);
 
 int32 main() 
 {
@@ -52,8 +53,9 @@ void PlayGame()
 {
 
 	FText guess = "";
+	playerGame.Reset();
 	//constexpr int32 NUMBER_OF_TURNS = 5;
-	for (int32 i = 0; i <= playerGame.GetMaxTries(); i++)
+	for (int32 i = 0; i <= playerGame.GetMaxTries() && !playerGame.IsGameWon(); i++)
 	{
 		guess = GetGuess();
 		EWordStatus status = playerGame.CheckGuessValidity(guess);
@@ -64,9 +66,10 @@ void PlayGame()
 		else {
 			switch (status) {
 			case(EWordStatus::Different_Length):
-				std::cout << "Not the same lenght, please try again" << std::endl;
+				std::cout << "Not the same lenght, please enter a "<< playerGame.GetHiddenWordLength() <<" length word" << std::endl;
 				break;
 			case(EWordStatus::Not_Isogramm) :
+				std::cout << "Not an isogramm" << std::endl;
 				break;
 			case(EWordStatus::Not_lowercase) :
 				std::cout << "Not all lowercase, please try again" << std::endl;
@@ -75,6 +78,8 @@ void PlayGame()
 			i--;
 		}
 	}
+	if (playerGame.IsGameWon()) std::cout << "Congratulations! the word is " << guess << std::endl; else std::cout << "You failed to guess the word" << std::endl;
+
 	return;
 
 }
