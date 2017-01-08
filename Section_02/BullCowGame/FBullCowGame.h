@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
+using FString = std::string;
+using int32 = int;
 
 class FBullCowGame
 {
 //Variables
 private:
-	int myCurrentTry;
-	int myMaxTries;
+	int32 myCurrentTry;
+	int32 myMaxTries;
 
 //Methods
 public:
@@ -14,12 +16,12 @@ public:
 	~FBullCowGame();
 	
 	//  Const protects us from modifying the members of the class inside a method
-	int GetCurrentTry() const;
-	int GetMaxTries() const;
+	int32 GetCurrentTry() const;
+	int32 GetMaxTries() const;
 	bool IsGameWon() const;
 
 	void Reset();
-	bool CheckGuessValidity(std::string); 
+	bool CheckGuessValidity(FString); 
 
 };
 

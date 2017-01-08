@@ -1,16 +1,21 @@
+/* This is the consol executable, it follows the MVC pattern
+
+*/
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
-using namespace std;
+using FText = std::string;
+using int32 = int;
+
 
 void PrintIntro();
-string GetGuess();
+FText GetGuess();
 void PlayGame();
 bool AskToPlayAgain();
-FBullCowGame playerGame(5);
+FBullCowGame playerGame;
 
-int main() 
+int32 main() 
 {
 	do{
 		PrintIntro();
@@ -22,25 +27,23 @@ int main()
 
 void PrintIntro() {
 
-	constexpr int  WORD_LENGTH = 5; //This is how you declare a constant expression, meaning something we won't change during compile time
-									//Macros replacement??? 
-
-	cout << "Welcome to the Bulls and Cows game\n";
-	cout << "Can you guess the " << WORD_LENGTH << " letter isogram am thinking of?\n";
-	cout << endl;
+	constexpr int32  WORD_LENGTH = 5; //This is how you declare a constant expression, meaning something we won't change during compile time
+	std::cout << "Welcome to the Bulls and Cows game\n";
+	std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram am thinking of?\n";
+	std::cout << std::endl;
 
 }
 
-string GetGuess() 
+FText GetGuess() 
 {
 	//get the guess from the player
 
-	string guess = "";
+	FText guess = "";
 
-	//cin >> guess;
-	cout << "Enter your guess: ";
-	getline(cin, guess);
-	//cout << endl;
+	//std::cin >> guess;
+	std::cout << "Enter your guess: ";
+	std::getline(std::cin, guess);
+	//std::cout << std::endl;
 
 	return guess;
 }
@@ -48,28 +51,28 @@ string GetGuess()
 void PlayGame()
 {
 
-	string guess = "";
-	//constexpr int NUMBER_OF_TURNS = 5;
-	for (int i = 0; i <= playerGame.GetMaxTries(); i++)
+	FText guess = "";
+	//constexpr int32 NUMBER_OF_TURNS = 5;
+	for (int32 i = 0; i <= playerGame.GetMaxTries(); i++)
 	{
 		guess = GetGuess();
-		cout << "Your Guess was: " << guess << endl;
-		cout << endl;
+		std::cout << "Your Guess was: " << guess << std::endl;
+		std::cout << std::endl;
 	}
 }
 
 bool AskToPlayAgain()
 {
-	string response = "";
+	FText response = "";
 	bool continueGame = false;
-	cout << "Do you want to play again?";
-	getline(cin, response);
+	std::cout << "Do you want to play again?";
+	std::getline(std::cin, response);
 	
 	if (response[0] == 'y' || response[0] == 'Y')
 		continueGame = true;
 
-	//cout << "is it Y?" << (response[0] == 'y');
-	//cout << endl;
+	//std::cout << "is it Y?" << (response[0] == 'y');
+	//std::cout << std::endl;
 
 	return continueGame;
 }
