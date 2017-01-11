@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{42431261-48B0-6092-DB64-55B7CD00C129}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Section_03",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
