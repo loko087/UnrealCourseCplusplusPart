@@ -21,7 +21,11 @@ void UPositionReport::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+	FString temp = GetOwner()->GetName();
+	FString pos = GetOwner()->GetTransform().GetLocation().ToString();
+	//FString pos = GetOwner()->GetTransform()
+	UE_LOG(LogTemp, Warning, TEXT("Position report for %s is at %s"), *temp,*pos);//, *pos); //This is the same as Debug.Log in unity
+
 }
 
 
