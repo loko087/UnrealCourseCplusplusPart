@@ -11,6 +11,9 @@ class SECTION_03_API UOpenDoor : public UActorComponent
 {
 	GENERATED_BODY()
 
+private:
+	AActor* owner;
+
 public:	
 	// Sets default values for this component's properties
 	UOpenDoor();
