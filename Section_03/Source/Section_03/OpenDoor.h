@@ -13,6 +13,15 @@ class SECTION_03_API UOpenDoor : public UActorComponent
 
 private:
 	AActor* owner;
+	
+	UPROPERTY(EditAnywhere)
+	float openAngle;
+
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* pressurePlate;
+
+	UPROPERTY(EditAnywhere)
+		AActor* openActor;
 
 public:	
 	// Sets default values for this component's properties
@@ -20,6 +29,8 @@ public:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	void OpenDoor();
 	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
