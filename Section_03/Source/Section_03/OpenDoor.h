@@ -20,8 +20,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* pressurePlate;
 
-	UPROPERTY(EditAnywhere)
-		AActor* openActor;
+	AActor* openActor;
 
 public:	
 	// Sets default values for this component's properties
