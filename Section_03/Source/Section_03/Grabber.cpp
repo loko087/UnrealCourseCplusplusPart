@@ -20,7 +20,7 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("GRABBER REPORTING!!"));
-
+	
 	// ...
 	
 }
@@ -30,7 +30,15 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
+	FVector location;
+	FRotator rotation;
+
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(location,rotation);
+
+	UE_LOG(LogTemp, Warning, TEXT("GRABBER REPORTING!! with position %s and rotation %s"),*(location.ToString()),*(rotation.ToString())); 
 
 	// ...
+	//Get the player view-point
+
 }
 
