@@ -11,6 +11,10 @@ class SECTION_03_API UGrabber : public UActorComponent
 {
 	GENERATED_BODY()
 
+private:
+	float reach = 100.f;
+
+
 public:	
 	// Sets default values for this component's properties
 	UGrabber();
