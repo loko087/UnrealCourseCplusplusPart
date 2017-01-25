@@ -50,7 +50,19 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 		50.f
 		);
 	// ...
-	//Get the player view-point
+	FHitResult hit;
+	FCollisionQueryParams traceParams(FName(TEXT("")), false, GetOwner());
 
+	bool nailedIt = GetWorld()->LineTraceSingleByObjectType(
+		hit,
+		location,
+		lineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		traceParams
+		);
+
+	if (nailedIt) {
+		UE_LOG(LogTemp, Warning, TEXT("Collided with %s"),*hit.Actor->GetName());
+	}
 }
 
