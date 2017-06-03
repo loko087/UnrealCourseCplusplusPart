@@ -426,12 +426,12 @@ DerivedDataCache/*
 ##########################
 # Unreal Generated Files #
 ##########################
-**/Build
-**/Binaries
-**/DerivedDataCache
-**/Intermediate
-**/Saved
-**/Content/StarterContent/
+**/Build/*
+**/Binaries/*
+**/DerivedDataCache/*
+**/Intermediate/*
+**/Saved/*
+**/Content/StarterContent/*
 
 ######################
 # VS Generated Files #
