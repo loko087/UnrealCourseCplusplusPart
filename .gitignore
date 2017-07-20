@@ -419,4 +419,28 @@ __pycache__/
 */Intermediate/*
 
 # Cache files for the editor to use
-*/DerivedDataCache/*
+DerivedDataCache/*
+
+# Mac Artifacts
+.DS_Store
+
+# Vim Artifacts
+*.swp
+*.swo
+.ctrlp_cache/
+
+
+##########################
+# Unreal Generated Files #
+##########################
+**/Build/
+**/Binaries/
+**/DerivedDataCache/
+**/Intermediate/
+**/Saved/
+**/Content/StarterContent/
+
+######################
+# VS Generated Files #
+######################
+**.VC.db
