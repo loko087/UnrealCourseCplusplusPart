@@ -1,7 +1,8 @@
 // Copyright Ben Tristem 2016.
 
-#include "BuildingEscape.h"
 #include "OpenDoor.h"
+#include "BuildingEscape.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
 
 
 // Sets default values for this component's properties
@@ -9,7 +10,7 @@ UOpenDoor::UOpenDoor()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	bWantsBeginPlay = true;
+//	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...

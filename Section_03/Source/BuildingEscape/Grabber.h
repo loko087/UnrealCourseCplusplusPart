@@ -3,7 +3,10 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Runtime/Engine/Classes/Components/InputComponent.h"
 #include "Grabber.generated.h"
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -24,4 +27,12 @@ public:
 	// How far ahead of the player can we reach in cm
 	float Reach = 100.f;
 	
+
+	//The grabber has spawned? We don't know
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+
+	UInputComponent* InputComponent = nullptr;
+
+	void Grab();
+
 };

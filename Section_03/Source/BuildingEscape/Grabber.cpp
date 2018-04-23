@@ -1,7 +1,11 @@
 // Copyright Ben Tristem 2016.
 
-#include "BuildingEscape.h"
 #include "Grabber.h"
+#include "BuildingEscape.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
+#include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
+
+
 
 #define OUT
 
@@ -10,7 +14,7 @@ UGrabber::UGrabber()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	bWantsBeginPlay = true;
+	//bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
@@ -22,7 +26,28 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
-	
+
+	/// Look for attached physics handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	if (PhysicsHandle )
+	{
+		
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("%s missing physics handle component"),*GetOwner()->GetName());
+	}
+
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
+	if (InputComponent)
+	{
+		//
+		/// Nind the Input Axis
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("%s missing input component"), *GetOwner()->GetName());
+	}
 }
 
 
@@ -48,14 +73,14 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
 
 	// Draw a red trace in the world to visualise
-	DrawDebugLine(
+	UKismetSystemLibrary::DrawDebugLine(
 		GetWorld(),
 		PlayerViewPointLocation,
 		LineTraceEnd,
 		FColor(255, 0, 0),
-		false,
+		//false,
 		0.f,
-		0.f,
+		//0.f,
 		10.f
 	);
 	
@@ -82,5 +107,9 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 
 	// See what what we hit
 
+}
+
+void UGrabber::Grab() {
+	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"));
 }
 
