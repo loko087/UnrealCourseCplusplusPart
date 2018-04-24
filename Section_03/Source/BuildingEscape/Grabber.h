@@ -20,9 +20,17 @@ public:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	// Attach Input Component and Bind the Actions
+	void InputBinding();
+
+	//Find the Physics Handle (if any)
+	void FindPhysicsHandleComponent();
 	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+
+	FHitResult FirstPhysicsObjectHit();
 
 	// How far ahead of the player can we reach in cm
 	float Reach = 100.f;
@@ -33,6 +41,10 @@ public:
 
 	UInputComponent* InputComponent = nullptr;
 
+	//
 	void Grab();
+
+	//
+	void Release();
 
 };
