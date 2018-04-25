@@ -47,4 +47,6 @@ public:
 	//
 	void Release();
 
+	void GetReachLine(FVector &begin, FVector &end);
+
 };
