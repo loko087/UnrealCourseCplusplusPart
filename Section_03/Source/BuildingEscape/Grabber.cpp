@@ -3,6 +3,7 @@
 #include "BuildingEscape.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
 
 #define OUT
 

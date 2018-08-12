@@ -3,6 +3,8 @@
 #include "OpenDoor.h"
 #include "BuildingEscape.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
+#include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
+
 
 
 // Sets default values for this component's properties
@@ -24,6 +26,7 @@ void UOpenDoor::BeginPlay()
 
 	Owner = GetOwner();
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+
 }
 
 void UOpenDoor::OpenDoor()
