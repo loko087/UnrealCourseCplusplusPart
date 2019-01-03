@@ -4,6 +4,7 @@
 #include "BuildingEscape.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "Runtime/Engine/Classes/GameFramework/PlayerController.h"
+#include "Components/PrimitiveComponent.h"
 
 
 
@@ -22,10 +23,9 @@ UOpenDoor::UOpenDoor()
 // Called when the game starts
 void UOpenDoor::BeginPlay()
 {
-	Super::BeginPlay();
+	//Super::BeginPlay();
 
 	Owner = GetOwner();
-	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 
 }
 
@@ -42,11 +42,11 @@ void UOpenDoor::CloseDoor()
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	//Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the Trigger Volume
 	// If the ActorThatOpens is in the volume
-	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	if (GetObjectsMassInPlace() > 50.0f)
 	{
 		OpenDoor();
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
@@ -57,4 +57,20 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	{
 		CloseDoor();
 	}
+}
+
+float UOpenDoor::GetObjectsMassInPlace()
+{
+	float totalMassInPlace = 0.f;
+
+	TArray<AActor*> overlappingActors;
+
+	PressurePlate->GetOverlappingActors(overlappingActors);
+
+	for (auto& overlapping: overlappingActors) {
+		totalMassInPlace += overlapping->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+		UE_LOG(LogTemp,Warning,TEXT("%s is on the plate"),*overlapping->GetName())
+	}
+
+	return totalMassInPlace;
 }
