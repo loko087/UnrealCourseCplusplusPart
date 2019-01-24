@@ -54,6 +54,8 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 	// See what what we hit
 
+	if (!PhysicsHandle) return;
+
 	FVector LineTraceEnd;
 	FVector LineBegin;
 	UGrabber::GetReachLine(OUT LineBegin , OUT LineTraceEnd);
@@ -101,6 +103,8 @@ FHitResult UGrabber::FirstPhysicsObjectHit()
 }
 
 void UGrabber::Grab() {
+	if (!PhysicsHandle) return;
+
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"));
 
 	auto hitResult = FirstPhysicsObjectHit();
@@ -119,6 +123,8 @@ void UGrabber::Grab() {
 }
 
 void UGrabber::Release() {
+	if (!PhysicsHandle) return;
+
 	UE_LOG(LogTemp, Warning, TEXT("Grab Released"));
 	if (PhysicsHandle->GrabbedComponent)
 	{
